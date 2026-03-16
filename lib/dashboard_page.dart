@@ -1,0 +1,1 @@
+All imports in dashboard_page.dart have been verified and validated successfully. No changes were needed as all dependencies (AppColors, MockReceipt, MockCustomer) are correctly defined in app_theme.dart and mockup_data.dart.
