@@ -105,7 +105,7 @@ class _ResultPageState extends State<ResultPage>
     final cs    = theme.colorScheme;
 
     return Scaffold(
-      backgroundColor: cs.background,
+      backgroundColor: cs.surface,
       appBar: AppBar(
         title: const Text('ผลการสแกน'),
         leading: IconButton(
@@ -127,7 +127,7 @@ class _ResultPageState extends State<ResultPage>
           Container(
             width: 80, height: 80,
             decoration: BoxDecoration(
-              color: AppColors.maroon.withOpacity(0.1),
+              color: AppColors.maroon.withAlpha((0.1 * 255).round()),
               shape: BoxShape.circle,
             ),
             child: const Padding(
@@ -186,7 +186,7 @@ class _ResultPageState extends State<ResultPage>
                         child: Container(
                           width: 56, height: 56,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withAlpha((0.2 * 255).round()),
                             borderRadius: BorderRadius.circular(14),
                           ),
                           child: const Icon(Icons.check_circle_outline,
@@ -210,7 +210,7 @@ class _ResultPageState extends State<ResultPage>
                               style: TextStyle(
                                 fontFamily: 'Sarabun',
                                 fontSize: 13,
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withAlpha((0.8 * 255).round()),
                               ),
                             ),
                           ],
@@ -351,12 +351,12 @@ class _ResultPageState extends State<ResultPage>
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: _freeHoursFromThis > 0
-                    ? AppColors.maroon.withOpacity(0.08)
+                    ? AppColors.maroon.withAlpha((0.08 * 255).round())
                     : AppColors.paleBrownLight,
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(
                   color: _freeHoursFromThis > 0
-                      ? AppColors.maroon.withOpacity(0.3)
+                      ? AppColors.maroon.withAlpha((0.3 * 255).round())
                       : AppColors.divider,
                 ),
               ),
@@ -460,7 +460,7 @@ class _CategoryChip extends StatelessWidget {
           duration: const Duration(milliseconds: 250),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
           decoration: BoxDecoration(
-            color: selected ? color.withOpacity(0.12) : Colors.transparent,
+            color: selected ? color.withAlpha((0.12 * 255).round()) : Colors.transparent,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: selected ? color : AppColors.divider,

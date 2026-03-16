@@ -6,6 +6,7 @@ build/
 *.iml
 *.log
 .env
+.env.example
 *.freezed.dart
 *.g.dart
 *.gr.dart

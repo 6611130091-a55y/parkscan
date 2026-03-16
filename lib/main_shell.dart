@@ -1,7 +1,6 @@
 // lib/main_shell.dart
 import 'package:flutter/material.dart';
-import 'core/theme/app_theme.dart';
-import 'features/home/presentation/pages/home_page.dart';
+import 'features/receipt_scan/presentation/pages/home_page.dart';
 import 'features/dashboard/presentation/pages/dashboard_page.dart';
 import 'features/history/presentation/pages/history_page.dart';
 

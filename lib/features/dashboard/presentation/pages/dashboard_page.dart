@@ -41,11 +41,8 @@ class _DashboardPageState extends State<DashboardPage>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final cs    = theme.colorScheme;
-
     return Scaffold(
-      backgroundColor: cs.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: NestedScrollView(
         headerSliverBuilder: (_, __) => [
           SliverAppBar(
@@ -113,7 +110,6 @@ class _OverviewTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cs    = theme.colorScheme;
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -217,8 +213,6 @@ class _OverviewTab extends StatelessWidget {
 class _TopSpenderTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [

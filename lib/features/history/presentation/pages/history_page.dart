@@ -14,7 +14,7 @@ class HistoryPage extends StatelessWidget {
     final dateFmt = DateFormat('dd MMM yyyy • HH:mm');
 
     return Scaffold(
-      backgroundColor: cs.background,
+      backgroundColor: cs.surface,
       appBar: AppBar(
         title: const Text('ประวัติการจอดรถ'),
       ),
@@ -41,16 +41,17 @@ class HistoryPage extends StatelessWidget {
                 ),
                 Container(
                   width: 1, height: 40,
-                  color: Colors.white.withOpacity(0.3)),
+                  color: Colors.white.withAlpha((0.3 * 255).round())),
                 Expanded(
                   child: _BannerStat(
                     label: 'ชม.ฟรีรวม',
+
                     value: '${MockupData.totalFreeHours} ชม.',
                   ),
                 ),
                 Container(
                   width: 1, height: 40,
-                  color: Colors.white.withOpacity(0.3)),
+                  color: Colors.white.withAlpha((0.3 * 255).round())),
                 Expanded(
                   child: _BannerStat(
                     label: 'ค่าจอดจ่าย',
@@ -95,8 +96,8 @@ class HistoryPage extends StatelessWidget {
                             width: 40, height: 40,
                             decoration: BoxDecoration(
                               color: isFree
-                                  ? AppColors.success.withOpacity(0.1)
-                                  : AppColors.warning.withOpacity(0.1),
+                                  ? AppColors.success.withAlpha((0.1 * 255).round())
+                                  : AppColors.warning.withAlpha((0.1 * 255).round()),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Icon(
@@ -200,7 +201,7 @@ class _BannerStat extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'Sarabun',
             fontSize: 11,
-            color: Colors.white.withOpacity(0.75))),
+            color: Colors.white.withAlpha((0.75 * 255).round()))),
       ],
     );
   }
@@ -219,7 +220,7 @@ class _DetailChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: highlight
-            ? AppColors.maroon.withOpacity(0.08)
+            ? AppColors.maroon.withAlpha((0.08 * 255).round())
             : AppColors.paleBrownLight,
         borderRadius: BorderRadius.circular(8),
       ),

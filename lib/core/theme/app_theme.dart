@@ -33,10 +33,9 @@ class AppTheme {
       onPrimary: Colors.white,
       secondary: AppColors.paleBrown,
       onSecondary: AppColors.charcoal,
-      surface: AppColors.warmWhite,
+      surface: AppColors.cream,
       onSurface: AppColors.charcoal,
-      background: AppColors.cream,
-      onBackground: AppColors.charcoal,
+      surfaceContainerHighest: AppColors.warmWhite,
       outline: AppColors.divider,
     ),
     scaffoldBackgroundColor: AppColors.cream,
@@ -51,7 +50,7 @@ class AppTheme {
         color: Colors.white, letterSpacing: 0.5,
       ),
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: AppColors.warmWhite,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -108,10 +107,9 @@ class AppTheme {
       onPrimary: AppColors.charcoal,
       secondary: AppColors.maroonLight,
       onSecondary: Colors.white,
-      surface: AppColors.darkSurface,
+      surface: AppColors.darkBg,
       onSurface: Color(0xFFF0E6DF),
-      background: AppColors.darkBg,
-      onBackground: Color(0xFFF0E6DF),
+      surfaceContainerHighest: AppColors.darkSurface,
       outline: AppColors.darkSurface2,
     ),
     scaffoldBackgroundColor: AppColors.darkBg,
@@ -121,7 +119,7 @@ class AppTheme {
       elevation: 0, centerTitle: true,
       titleTextStyle: TextStyle(fontFamily: 'Sarabun', fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFFF0E6DF)),
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: AppColors.darkSurface, elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

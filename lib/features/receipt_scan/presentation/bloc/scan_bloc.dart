@@ -1,85 +1,109 @@
-// lib/features/receipt_scan/presentation/bloc/scan_event.dart
 import 'package:equatable/equatable.dart';
-
-abstract class ScanEvent extends Equatable {
-  const ScanEvent();
-  @override List<Object?> get props => [];
-}
-class ScanImageRequested    extends ScanEvent {
-  final String imagePath;
-  const ScanImageRequested(this.imagePath);
-  @override List<Object?> get props => [imagePath];
-}
-class ParkingSessionStarted extends ScanEvent {
-  final DateTime entryTime;
-  const ParkingSessionStarted(this.entryTime);
-  @override List<Object?> get props => [entryTime];
-}
-class ParkingExitRequested  extends ScanEvent {
-  final DateTime exitTime, entryDate;
-  const ParkingExitRequested({required this.exitTime, required this.entryDate});
-  @override List<Object?> get props => [exitTime, entryDate];
-}
-class ReceiptsLoadRequested  extends ScanEvent { const ReceiptsLoadRequested(); }
-class ActiveSessionRequested extends ScanEvent { const ActiveSessionRequested(); }
-class ReceiptDeleted         extends ScanEvent {
-  final String id;
-  const ReceiptDeleted(this.id);
-  @override List<Object?> get props => [id];
-}
-
-// ─────────────────────────────────────────────
-// scan_state.dart
-// ─────────────────────────────────────────────
-import '../../domain/entities/receipt.dart';
-import '../../domain/entities/parking_session.dart';
-
-abstract class ScanState extends Equatable {
-  const ScanState();
-  @override List<Object?> get props => [];
-}
-class ScanInitial          extends ScanState {}
-class ScanLoading          extends ScanState {}
-class ScanSuccess          extends ScanState {
-  final Receipt receipt;
-  const ScanSuccess(this.receipt);
-  @override List<Object?> get props => [receipt];
-}
-class ScanFailureState     extends ScanState {
-  final String message;
-  const ScanFailureState(this.message);
-  @override List<Object?> get props => [message];
-}
-class ReceiptsLoaded       extends ScanState {
-  final List<Receipt> receipts;
-  const ReceiptsLoaded(this.receipts);
-  @override List<Object?> get props => [receipts];
-}
-class ParkingSessionActive extends ScanState {
-  final ParkingSession session;
-  const ParkingSessionActive(this.session);
-  @override List<Object?> get props => [session];
-}
-class ParkingCalculated    extends ScanState {
-  final ParkingSession session;
-  const ParkingCalculated(this.session);
-  @override List<Object?> get props => [session];
-}
-class ParkingNoSession     extends ScanState {}
-
-// ─────────────────────────────────────────────
-// scan_bloc.dart
-// ─────────────────────────────────────────────
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domain/entities/parking_session.dart';
+import '../../domain/entities/receipt.dart';
 import '../../domain/repositories/receipt_repository.dart';
 import '../../domain/usecases/usecases.dart';
 
+// Events
+abstract class ScanEvent extends Equatable {
+  const ScanEvent();
+  @override
+  List<Object?> get props => [];
+}
+
+class ScanImageRequested extends ScanEvent {
+  final String imagePath;
+  const ScanImageRequested(this.imagePath);
+  @override
+  List<Object?> get props => [imagePath];
+}
+
+class ParkingSessionStarted extends ScanEvent {
+  final DateTime entryTime;
+  const ParkingSessionStarted(this.entryTime);
+  @override
+  List<Object?> get props => [entryTime];
+}
+
+class ParkingExitRequested extends ScanEvent {
+  final DateTime exitTime, entryDate;
+  const ParkingExitRequested({required this.exitTime, required this.entryDate});
+  @override
+  List<Object?> get props => [exitTime, entryDate];
+}
+
+class ReceiptsLoadRequested extends ScanEvent {
+  const ReceiptsLoadRequested();
+}
+
+class ActiveSessionRequested extends ScanEvent {
+  const ActiveSessionRequested();
+}
+
+class ReceiptDeleted extends ScanEvent {
+  final String id;
+  const ReceiptDeleted(this.id);
+  @override
+  List<Object?> get props => [id];
+}
+
+// States
+abstract class ScanState extends Equatable {
+  const ScanState();
+  @override
+  List<Object?> get props => [];
+}
+
+class ScanInitial extends ScanState {}
+
+class ScanLoading extends ScanState {}
+
+class ScanSuccess extends ScanState {
+  final Receipt receipt;
+  const ScanSuccess(this.receipt);
+  @override
+  List<Object?> get props => [receipt];
+}
+
+class ScanFailureState extends ScanState {
+  final String message;
+  const ScanFailureState(this.message);
+  @override
+  List<Object?> get props => [message];
+}
+
+class ReceiptsLoaded extends ScanState {
+  final List<Receipt> receipts;
+  const ReceiptsLoaded(this.receipts);
+  @override
+  List<Object?> get props => [receipts];
+}
+
+class ParkingSessionActive extends ScanState {
+  final ParkingSession session;
+  const ParkingSessionActive(this.session);
+  @override
+  List<Object?> get props => [session];
+}
+
+class ParkingCalculated extends ScanState {
+  final ParkingSession session;
+  const ParkingCalculated(this.session);
+  @override
+  List<Object?> get props => [session];
+}
+
+class ParkingNoSession extends ScanState {}
+
+// Bloc
 class ScanBloc extends Bloc<ScanEvent, ScanState> {
-  final ScanReceiptUseCase     _scan;
+  final ScanReceiptUseCase _scan;
   final CalculateParkingUseCase _calc;
   final GetReceiptsByDateUseCase _getByDate;
-  final DeleteReceiptUseCase   _delete;
-  final ReceiptRepository      _repo;
+  final DeleteReceiptUseCase _delete;
+  final ReceiptRepository _repo;
 
   ScanBloc({
     required ScanReceiptUseCase scan,
@@ -87,8 +111,11 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     required GetReceiptsByDateUseCase getByDate,
     required DeleteReceiptUseCase delete,
     required ReceiptRepository repo,
-  })  : _scan = scan, _calc = calc, _getByDate = getByDate,
-        _delete = delete, _repo = repo,
+  })  : _scan = scan,
+        _calc = calc,
+        _getByDate = getByDate,
+        _delete = delete,
+        _repo = repo,
         super(ScanInitial()) {
     on<ScanImageRequested>(_onScan);
     on<ReceiptsLoadRequested>(_onLoad);

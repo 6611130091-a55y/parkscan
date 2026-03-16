@@ -16,7 +16,9 @@ class MlKitDataSourceImpl implements MlKitDataSource {
     final result = await _recognizer.processImage(input);
     final sb = StringBuffer();
     for (final block in result.blocks) {
-      for (final line in block.lines) sb.writeln(line.text);
+      for (final line in block.lines) {
+        sb.writeln(line.text);
+      }
     }
     return sb.toString().trim();
   }

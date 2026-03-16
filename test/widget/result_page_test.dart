@@ -54,9 +54,10 @@ void main() {
     await tester.enterText(storeField, '');
     await tester.pump();
 
-    // Tap confirm
+    // Tap confirm (ensure the button is in view first)
+    await tester.ensureVisible(find.text('ยืนยันและบันทึก'));
     await tester.tap(find.text('ยืนยันและบันทึก'));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('กรุณาระบุชื่อร้าน'), findsOneWidget);
   });
@@ -75,8 +76,9 @@ void main() {
     await tester.enterText(amountField, 'abc');
     await tester.pump();
 
+    await tester.ensureVisible(find.text('ยืนยันและบันทึก'));
     await tester.tap(find.text('ยืนยันและบันทึก'));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('ตัวเลขไม่ถูกต้อง'), findsOneWidget);
   });

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/data/mockup_data.dart';
+import 'result_page.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback onToggleTheme;
@@ -20,9 +21,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   // Explicit animation controller for FAB
   late AnimationController _fabController;
   late Animation<double> _fabScale;
-
-  // Implicit: tracks whether header is expanded
-  bool _headerExpanded = true;
 
   double get _totalAmount =>
       _receipts.fold(0.0, (s, r) => s + r.amount);
@@ -69,7 +67,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final isDark = widget.isDark;
 
     return Scaffold(
-      backgroundColor: cs.background,
+      backgroundColor: cs.surface,
       body: CustomScrollView(
         slivers: [
           // ── SliverAppBar ─────────────────────────────────
@@ -111,7 +109,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Container(
                               width: 40, height: 40,
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
+                                color: Colors.white.withAlpha((0.2 * 255).round()),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: const Icon(Icons.local_parking,
@@ -135,16 +133,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 10),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.15),
+                            color: Colors.white.withAlpha((0.15 * 255).round()),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.3),
+                              color: Colors.white.withAlpha((0.3 * 255).round()),
                             ),
                           ),
                           child: Row(
                             children: [
                               Icon(Icons.timer_outlined,
-                                  color: Colors.white.withOpacity(0.9), size: 18),
+                                  color: Colors.white.withAlpha((0.9 * 255).round()), size: 18),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
@@ -152,7 +150,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   style: TextStyle(
                                     fontFamily: 'Sarabun',
                                     fontSize: 13,
-                                    color: Colors.white.withOpacity(0.95),
+                                    color: Colors.white.withAlpha((0.95 * 255).round()),
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -163,7 +161,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 decoration: BoxDecoration(
                                   color: _totalAmount >= 500
                                       ? AppColors.success
-                                      : Colors.white.withOpacity(0.2),
+                                      : Colors.white.withAlpha((0.2 * 255).round()),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
@@ -214,7 +212,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: AppColors.maroon.withOpacity(0.1),
+                      color: AppColors.maroon.withAlpha((0.1 * 255).round()),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text('${_receipts.length} รายการ',
@@ -289,7 +287,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Container(
               width: 40, height: 4,
               decoration: BoxDecoration(
-                color: AppColors.warmGray.withOpacity(0.4),
+                color: AppColors.warmGray.withAlpha((0.4 * 255).round()),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -521,7 +519,7 @@ class _ReceiptCardState extends State<_ReceiptCard>
               child: Container(
                 width: 44, height: 44,
                 decoration: BoxDecoration(
-                  color: r.categoryColor.withOpacity(0.12),
+                  color: r.categoryColor.withAlpha((0.12 * 255).round()),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(_categoryIcon(r.category),
@@ -541,7 +539,7 @@ class _ReceiptCardState extends State<_ReceiptCard>
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
-                    color: r.categoryColor.withOpacity(0.1),
+                    color: r.categoryColor.withAlpha((0.1 * 255).round()),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(r.categoryLabel,

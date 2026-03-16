@@ -1,6 +1,8 @@
 // lib/features/receipt_scan/domain/usecases/scan_receipt_usecase.dart
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/error/failures.dart';
+import '../entities/parking_session.dart';
 import '../entities/receipt.dart';
 import '../repositories/receipt_repository.dart';
 
@@ -12,10 +14,10 @@ class ScanReceiptUseCase {
 }
 
 // lib/features/receipt_scan/domain/usecases/calculate_parking_usecase.dart
-import 'package:dartz/dartz.dart';
-import '../../../../core/error/failures.dart';
-import '../entities/parking_session.dart';
-import '../repositories/receipt_repository.dart';
+// import 'package:dartz/dartz.dart';
+// import '../../../../core/error/failures.dart';
+// import '../entities/parking_session.dart';
+// import '../repositories/receipt_repository.dart';
 
 class CalculateParkingParams {
   final DateTime exitTime;
@@ -31,11 +33,11 @@ class CalculateParkingUseCase {
 }
 
 // lib/features/receipt_scan/domain/usecases/get_receipts_usecase.dart
-import 'package:dartz/dartz.dart';
-import '../../../../core/error/failures.dart';
-import '../entities/receipt.dart';
-import '../entities/parking_session.dart';
-import '../repositories/receipt_repository.dart';
+// import 'package:dartz/dartz.dart';
+// import '../../../../core/error/failures.dart';
+// import '../entities/receipt.dart';
+// import '../entities/parking_session.dart';
+// import '../repositories/receipt_repository.dart';
 
 class GetReceiptsByDateUseCase {
   final ReceiptRepository _repo;
